@@ -1,2 +1,2 @@
 # todo-list-
-This project is a standard to-do list . First try at angular-js.
+This project is a todo-list built using javascript,html,css.

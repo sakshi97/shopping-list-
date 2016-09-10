@@ -1,29 +1,83 @@
-<!DOCTYPE  html>
+<!DOCTYPE html>
 <html>
 <head>
-
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-<script src="main.js"></script>
+<title>SHOP-SPREE</title>
 <link rel="stylesheet" href="style.css">
+<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+
 </head>
-<body ng-app="todoApp">
-<!--TODO-LIST-->
-<div class="container" >
-<div ng-controller="todoController as main">
-<h1 style="font-weight:bold;">To-Do List</h1>
-<form name="main.myform" >
-<input type="text" placeholder="add new todo item" ng-model="main.text"  class="input">
-<button ng-click="main.addTodo(main.text)" class="btn btn-primary">ADD</button>
-</form>
-<!--List-->
-<div  ng-repeat="todo in main.todolist" >
-<input type="checkbox" ng-model="checked" >
-<div ng-class="{strike : checked}" style="display:inline;padding:10px;" >
-{{todo.text}}
+
+<body>
+<div class="container">
+ 
+<!--Header-->
+<div class="header">
+<div class="heading">
+<h1 style="font-size:70px;">Shop-Spree... !</h1><br>
+<div class="underline"></div><br>
+<p style="font-size:30px;font-family:'Lobster',cursive;text-align:center;"> This app makes shopping for your monthly groceries really easy ! <br>  Create . Shop . Delete .  </p>
 </div>
 </div>
+<!--Main" Body-->
+<div id="body">
+<center>
+<input type="button"  value="Add item !" id="addb" onclick="addtolist()">
+<input type="text"  name="item" value=" Enter your item here . " id="addt" ><br>
+</center>
 </div>
+
 </div>
+
+<script>
+var addbutton= document.getElementById("addb");
+var c=0;
+function addtolist(){
+    c++;
+	//var body = document.getElementsByClassName("body")[0];
+    var body= document.getElementById("body");
+    //var outer=document.createElement("div");
+	var text= document.getElementById("addt").value;
+	var checkb = document.createElement("input");
+	checkb.type="checkbox";
+    checkb.value="First";
+    checkb.className="chb";
+    checkb.id=c;
+    checkb.onchange=function(){
+        //alert(this.id);
+        var check = document.getElementById(this.id);
+        var text = document.getElementsByClassName("textb");
+       // alert(text.length);
+       for(var i=0;i<text.length;i++)
+        {
+            if(this.id==text[i].for)
+            {
+                text[i].parentNode.removeChild(text[i]);
+            }
+        }
+         check.parentNode.removeChild(check);
+        };
+
+    
+    //outer.class=" checkbox checkbox-primary";
+    var textb=document.createElement("label");
+    textb.for=c;
+    textb.textContent=text;
+    textb.className="textb";
+   // outer.appendChild(checkb);
+    //body.appendChild(outer);
+    body.appendChild(checkb);
+    body.appendChild(textb);
+    body.appendChild(document.createElement("br"));
+     //checkb.onchange=remove(this);
+
+
+};
+</script>
 </body>
 </html>
